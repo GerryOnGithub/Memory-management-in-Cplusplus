@@ -1,4 +1,4 @@
-# Memory Management in Cplusplus
+# Memory Management in C++
 
 ## 1. Never pass a pointer when a reference will do
 That's actually pretty simple, so on to no. 2.
