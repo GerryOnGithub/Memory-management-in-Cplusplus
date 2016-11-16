@@ -1,6 +1,4 @@
-# Memory-management-in-Cplusplus
-
-Draft.
+# Memory Management in Cplusplus
 
 ## 1. Never pass a pointer when a reference will do
 That's actually pretty simple, so on to no. 2.
