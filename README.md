@@ -1,17 +1,32 @@
 # Memory Management in C++
 
-currently this is in draft
-
-Follow these simple rules and you will never have to worry about memory leaks in your C++ code. Or at least if you do, they will be easy to find.
+Memory leaks can be a big problem, they are one of the main reasons people fear and avoid C++. Follow these simple rules and you might just never have a memory leak in your C++ code ever again. Or if you do, is will be easy to find.
 
 ## 1. Never pass a pointer when a reference will do
 That's actually pretty simple, so on to no. 2.
 ## 2. As much as possible, use the stack, not the heap
-Hum, another obvious one. On to no. 3.
-## 3. Utilize STL classes to organize any allocated memory
-Once again, pretty straight forward. See how easy this is?
+Another obvious one, keep reading.
+## 3. Use of the STL to store anything you allocate
+If you allocate it, save it in an STL class.
 ## 4. Generally only allocate classes, not basic data structures
 A class may internally allocate memory for basic structures such as char [], but that data structure is to be kept hidden from other classes. Typically STL will make this unnecessary, but there may be special cases.
-## 5. Create a class (or classes) who's only job it is is to manage heap memory for a single purpose
+## 5. Create classes who's individual jobs are to manage heap memory for specific purposes
+An example to demonstrate.
 
-I will finish this later
+Imagine you need to manage the real-time state of some game players, and this code needs to be super fast, so the decision has been made to keep this data in memory. Let's say we have two classes, one called User and another called UserManagement. Only one instance of UserManagement will be instantiated and it will most likely be around for the life of the program. 
+
+Only UserManagement is allowed to create, and destroy User objects. Let's call UserManagement UM for short. Only UM is allowed to keep a non-stack reference to a User object. When UM goes away, so do all User objects. UM will (probably) use of a list or map to store User objects, with a mutex to protect access (to the list or map).
+
+What about updates to User objects, or bits of the program that want to pass User objects to other bits of the program?
+
+UM could manage updates, that way UM can insure thread safe access to the User objects. Or perhaps another class working closely with UM could take on the task of updating the User objects.
+
+So what happens when various functions starts passing User objects around. These functions must honor the rules for updates, and they must not attempt to somehow store references (to Users) past the functions own lifetime.
+
+What would generally be best, especially if the functions are out of your control, is utilize copies. When asking for a user data, the caller could pass in a reference to a stack-allocated User object that UM would then fill-out and return.
+
+[I'm not saying copy this exact design for your game: it's just an illustration. Caveat emptor.]
+
+Well, there you have it. Follow these rules and you can tell your (programming) friends: "Real programmers don't need garbage collectors!"
+
+It's a pretty big deal - memory leaks are one of the main reasons people fear and avoid C++.
