@@ -1,13 +1,13 @@
 # Memory Management in C++
 
-Memory leaks can be a big problem, they are one of the main reasons people fear and avoid C++. Follow these simple rules and you might just never have a memory leak in your C++ code ever again. Or if you do, is will be easy to find.
+One reasons programmers may choose to not use C++ is because they fear memory leaks. Follow these rules your fears will melt away.
 
 ## 1. Never pass a pointer when a reference will do
 That's actually pretty simple, so on to no. 2.
 ## 2. As much as possible, use the stack, not the heap
 Another obvious one, keep reading.
 ## 3. Make use of the Standard Template Libary to store anything you allocate
-If you allocate a bunch of somethings, store them utilizing an STL class.
+If you allocate a some things, store them utilizing an STL class. Why I am using singular here will (hopefully) be clear after reading no. 5 below.
 ## 4. Generally only allocate classes, not basic data types
 If you find you need to make use of basic data types (for example double[]) then encapsulate it in a class and keep it away from prying eyes. Thing of how the string class hides and manages the memory it allocates. And stick to the next rule.
 ## 5. Create classes who's individual jobs are to manage heap memory for specific purposes
