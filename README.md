@@ -17,14 +17,14 @@ Imagine you need to manage the real-time state of some game players, and this co
 
 Only UserManagement is allowed to create, and destroy User objects. Let's call UserManagement UM for short. Only UM is allowed to keep a non-stack reference to a User object. When UM goes away, so do all User objects. UM will (probably) use of a list or map to store User objects, with a mutex to protect access (to the list or map).
 
-What about updates to User objects, or bits of the program that want to pass User objects to other bits of the program?
+What about updates to User objects, or bits of the program that want to pass User objects to other bits of the program? It depends on overall design and such, but let's consider some general strategies.
 
 UM could manage updates, that way UM can insure thread safe access to the User objects. Or perhaps another class working closely with UM could take on the task of updating the User objects.
 
 So what happens when various functions starts passing User objects around. These functions must honor the rules for updates, and they must not attempt to somehow store references (to Users) past the functions own lifetime.
 
-What would generally be best, especially if the functions are out of your control, is utilize copies. When asking for a user data, the caller could pass in a reference to a stack-allocated User object that UM would then fill-out and return.
+Best would be to make use of copies. When asking for a user data, the caller could pass in a reference to a (stack-allocated) User object that UM would then fill-out and return.
 
 [I'm not saying copy this exact design for your game: it's just an illustration. Caveat emptor.]
 
-Well, there you have it. Follow these rules and you can tell your (programming) friends: "Real programmers don't need garbage collectors!"
+Well, there you have it. Follow these rules and you can tell your (programming) friends "Real programmers don't need garbage collectors!"
