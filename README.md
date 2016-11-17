@@ -1,6 +1,6 @@
 # Memory Management in C++
 
-One reasons programmers may choose to not use C++ is because they fear memory leaks. Follow these rules your fears will melt away.
+One reasons programmers may choose to not use C++ is because they fear memory leaks. Follow these rules and your fears will melt away.
 
 ## 1. Never pass a pointer when a reference will do
 That's actually pretty simple, so on to no. 2.
