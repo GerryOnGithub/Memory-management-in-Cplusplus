@@ -6,10 +6,10 @@ Memory leaks can be a big problem, they are one of the main reasons people fear 
 That's actually pretty simple, so on to no. 2.
 ## 2. As much as possible, use the stack, not the heap
 Another obvious one, keep reading.
-## 3. Use of the STL to store anything you allocate
-If you allocate it, save it in an STL class.
-## 4. Generally only allocate classes, not basic data structures
-A class may internally allocate memory for basic structures such as char [], but that data structure is to be kept hidden from other classes. Typically STL will make this unnecessary, but there may be special cases.
+## 3. Make use of the Standard Template Libary to store anything you allocate
+If you allocate it, manage it utilizing an STL class.
+## 4. Generally only allocate classes, not basic data types
+If you find you need to make use of basic data types (for example double[]) then encapsulate it in a class and keep it away from prying eyes. And stick to the next rule.
 ## 5. Create classes who's individual jobs are to manage heap memory for specific purposes
 An example to demonstrate.
 
@@ -28,5 +28,3 @@ What would generally be best, especially if the functions are out of your contro
 [I'm not saying copy this exact design for your game: it's just an illustration. Caveat emptor.]
 
 Well, there you have it. Follow these rules and you can tell your (programming) friends: "Real programmers don't need garbage collectors!"
-
-It's a pretty big deal - memory leaks are one of the main reasons people fear and avoid C++.
