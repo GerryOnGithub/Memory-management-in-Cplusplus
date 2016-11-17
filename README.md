@@ -7,11 +7,11 @@ That's actually pretty simple, so on to no. 2.
 ## 2. As much as possible, use the stack, not the heap
 Another obvious one, keep reading.
 ## 3. Make use of the Standard Template Libary to store anything you allocate
-If you allocate it, manage it utilizing an STL class.
+If you allocate a bunch of somethings, store them utilizing an STL class.
 ## 4. Generally only allocate classes, not basic data types
 If you find you need to make use of basic data types (for example double[]) then encapsulate it in a class and keep it away from prying eyes. Thing of how the string class hides and manages the memory it allocates. And stick to the next rule.
 ## 5. Create classes who's individual jobs are to manage heap memory for specific purposes
-An example to demonstrate.
+As always (and especially when it comes to memory management) each class should have a singlular purpose.
 
 Imagine you need to manage the real-time state of some game players, and this code needs to be super fast, so the decision has been made to keep this data in memory. Let's say we have two classes, one called User and another called UserManagement. Only one instance of UserManagement will be instantiated and it will most likely be around for the life of the program. 
 
