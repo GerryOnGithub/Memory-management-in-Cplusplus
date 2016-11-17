@@ -9,7 +9,7 @@ Another obvious one, keep reading.
 ## 3. Make use of the Standard Template Libary to store anything you allocate
 If you allocate it, manage it utilizing an STL class.
 ## 4. Generally only allocate classes, not basic data types
-If you find you need to make use of basic data types (for example double[]) then encapsulate it in a class and keep it away from prying eyes. And stick to the next rule.
+If you find you need to make use of basic data types (for example double[]) then encapsulate it in a class and keep it away from prying eyes. Thing of how the string class hides and manages the memory it allocates. And stick to the next rule.
 ## 5. Create classes who's individual jobs are to manage heap memory for specific purposes
 An example to demonstrate.
 
@@ -21,9 +21,9 @@ What about updates to User objects, or bits of the program that want to pass Use
 
 UM could manage updates, that way UM can insure thread safe access to the User objects. Or perhaps another class working closely with UM could take on the task of updating the User objects.
 
-So what happens when various functions starts passing User objects around. These functions must honor the rules for updates, and they must not attempt to somehow store references (to Users) past the functions own lifetime.
+So what happens when various functions starts passing User objects around. These functions must honor the rules for updates, and they must not keep references (to Users) past the functions own lifetime.
 
-Best would be to make use of copies. When asking for a user data, the caller could pass in a reference to a (stack-allocated) User object that UM would then fill-out and return.
+In a multi-threaded environment its best to make copies that can be passed around. When asking for a user data, the caller  passes in a reference to a (stack-allocated) User object, and UM (or UM's helper) would fill-in the object's state data and return. 
 
 [I'm not saying copy this exact design for your game: it's just an illustration. Caveat emptor.]
 
