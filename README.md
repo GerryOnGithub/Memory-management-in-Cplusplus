@@ -23,8 +23,8 @@ UM could manage updates, that way UM can insure thread safe access to the User o
 
 So what happens when various functions starts passing User objects around. These functions must honor the rules for updates, and they must not keep references (to Users) past the functions own lifetime.
 
-In a multi-threaded environment its best to make copies that can be passed around. When asking for a user data, the caller  passes in a reference to a (stack-allocated) User object, and UM (or UM's helper) would fill-in the object's state data and return. 
+In a multi-threaded environment its best to make copies that can be passed around. When asking for a user data, the caller  passes in a reference to a (stack-allocated) User object, and UM (or UM's helper) would fill-in the object's state data and return. Even better pass around just some of the object's data, if you can. Of course continue to respect the rules for updating Users.
 
-[I'm not saying copy this exact design for your game: it's just an illustration. Caveat emptor.]
+I'm not saying copy this exact design for your game: it's just an illustration. Caveat emptor.
 
 Well, there you have it. Follow these rules and you can tell your (programming) friends "Real programmers don't need garbage collectors!"
