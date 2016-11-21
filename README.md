@@ -13,7 +13,7 @@ If you find you need to make use of basic data types (for example double[]) then
 ## 5. Create classes who's individual jobs are to manage heap memory for specific purposes
 As always (and especially when it comes to memory management) each class should have a singlular purpose.
 
-Imagine you need to manage the real-time state of some game players, and this code needs to be super fast, so the decision has been made to keep this data in memory. Let's say we have two classes, one called User and another called UserManagement. Only one instance of UserManagement will be instantiated and it will most likely be around for the life of the program. 
+Imagine you need to manage the real-time state of some game players, and this code needs to be super fast, so the decision has been made to keep this data in memory. Let's say we have two classes, one called User and another called UserManagement. Only one instance of UserManagement will be instantiated and it will most likely be around for the life of the program. It might be a good candidate for the singleton pattern.
 
 Only UserManagement is allowed to create, and destroy User objects. Let's call UserManagement UM for short. Only UM is allowed to keep a non-stack reference to a User object. When UM goes away, so do all User objects (thanks to UM's destructor). UM will (probably) make use of a list or map to store User objects, with a mutex to protect access (to the list or map).
 
