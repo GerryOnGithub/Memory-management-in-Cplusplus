@@ -1,6 +1,6 @@
 # Memory Management in C++
 
-One reason managers and programmers may choose to not use C++ on a project is they fear memory leaks. Follow these rules/guidelines and your fears (and your memory leaks) will melt away. I used these strategies on a memory intensive data-processing project and had zero memory leak issues.
+One reason managers and programmers may choose to not use C++ on a project is they fear memory leaks. Follow these rules/guidelines and your fears (and your memory leaks) will melt away. I used these strategies on a memory intensive data-processing project (and other projects) and had zero memory leak issues. In my 10+ years of C++ programming memory leaks were never a problem.
 
 ## 1. Never pass a pointer when a reference will do
 That's actually pretty simple, so on to no. 2.
